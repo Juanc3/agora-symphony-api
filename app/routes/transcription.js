@@ -5,10 +5,11 @@ const router = express.Router();
 
 router.post('/start', async (req, res) => {
   try {
-    const projectId = process.env.AGORA_PROJECT_ID;
+    console.log("start transcription");
+    const appId = process.env.AGORA_APP_ID;
     const data = await getBuildToken(appId || '');
-    
-    const result = await startTranscription(projectId, data.token);
+    console.log("data", data);
+    const result = await startTranscription(appId, data.tokenName);
     res.json(result);
   } catch (err) {
     console.error(err.response?.data || err.message);
@@ -18,7 +19,7 @@ router.post('/start', async (req, res) => {
 
 router.get('/get-build-token', async (req, res) => {
 try {
-    const appId = process.env.AGORA_APP_ID;
+  console.log("get build token");
     const data = await getBuildToken(appId || '');
     res.json(data);
   } catch (err) {

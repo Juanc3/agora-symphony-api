@@ -53,12 +53,13 @@ export async function startTranscription(appId, tokenName) {
     maxIdleTime: 60,
     rtcConfig: {
       channelName: channelName,
-      subBotUid: "123",
-      subBotToken: "123",
+      subBotUid: "1234",
+      subBotToken: "1234",
       pubBotUid: "123",
       pubBotToken: "123",
     },
   };
   const res = await agoraClient.post(`v1/projects/${appId}/rtsc/speech-to-text/tasks?builderToken=${tokenName}`, data);
+  console.log("res.data", res.data);
   return res.data;
 }
